@@ -1,0 +1,1011 @@
+<?xml version="1.0"?><!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+	<link name="NotoSans" type="font" subtype="truetype" src="${nsfont.NotoSans_Regular}" src-bold="${nsfont.NotoSans_Bold}" src-italic="${nsfont.NotoSans_Italic}" src-bolditalic="${nsfont.NotoSans_BoldItalic}" bytes="2" />
+    <link name="C2" type="font" subtype="truetype" 
+          src="https://6130737.app.netsuite.com/core/media/media.nl?id=4507&amp;c=6130737&amp;h=5QxsnS-HbMtjDZhe7Rhoul2MPUcg3WY0WN-i56LYj0yc2FTI&amp;_xt=.ttf" 
+          src-bold="https://6130737.app.netsuite.com/core/media/media.nl?id=4504&amp;c=6130737&amp;h=eDoBX1kiAypMvRmecwcwy86qvCaS7KLESjRhuGkhAcxhsfvk&amp;_xt=.ttf" 
+          src-italic="https://6130737.app.netsuite.com/core/media/media.nl?id=4506&amp;c=6130737&amp;h=YWZ6n-FQJ6SGizvx8l7IUeYjDbN11KKsuLp_LxtTFHRElj3l&amp;_xt=.ttf" 
+          src-bolditalic="https://6130737.app.netsuite.com/core/media/media.nl?id=4505&amp;c=6130737&amp;h=PRV9g-ygWCdosGF4xQJc7FJfZ4jPUOxyy-tmsiUh9XTQtjxh&amp;_xt=.ttf" />
+    <link name="cyberbit" type="font" subtype="opentype" src="${nsfont.cyberbit}" src-bold="${nsfont.cyberbit}" bytes="2" />
+	<#if .locale == "zh_CN">
+		<link name="NotoSansCJKsc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKsc_Regular}" src-bold="${nsfont.NotoSansCJKsc_Bold}" bytes="2" />
+	<#elseif .locale == "zh_TW">
+		<link name="NotoSansCJKtc" type="font" subtype="opentype" src="${nsfont.NotoSansCJKtc_Regular}" src-bold="${nsfont.NotoSansCJKtc_Bold}" bytes="2" />
+	<#elseif .locale == "ja_JP">
+		<link name="NotoSansCJKjp" type="font" subtype="opentype" src="${nsfont.NotoSansCJKjp_Regular}" src-bold="${nsfont.NotoSansCJKjp_Bold}" bytes="2" />
+	<#elseif .locale == "ko_KR">
+		<link name="NotoSansCJKkr" type="font" subtype="opentype" src="${nsfont.NotoSansCJKkr_Regular}" src-bold="${nsfont.NotoSansCJKkr_Bold}" bytes="2" />
+	<#elseif .locale == "th_TH">
+		<link name="NotoSansThai" type="font" subtype="opentype" src="${nsfont.NotoSansThai_Regular}" src-bold="${nsfont.NotoSansThai_Bold}" bytes="2" />
+	</#if>
+    <macrolist>
+        <macro id="nlheader">
+          <#if record.subsidiary!='CHI'>
+			<table width="100%">
+              <tr>
+                <td colspan="4" font-size="8pt">${record.custbody_rsm_inv_bank_rec.custrecord_rsm_office_address_det}</td>
+                <td colspan="4" font-size="8pt">${record.custbody_rsm_inv_bank_rec.custrecord_rsm_office_contact_det}</td>
+                <td colspan="3" align="right" margin-left="10px"><img src="https://6130737.app.netsuite.com/core/media/media.nl?id=1699&amp;c=6130737&amp;h=13aa6e3b1e19259aafe7" width="80%" height="80%" /></td>
+              </tr>
+          </table>
+            </#if>
+        </macro>
+        <macro id="nlfooter">
+          <#if record.subsidiary!='CHI'>
+			<table width="100%">
+              <tr>
+               <td font-size="8pt">${record.custbody_rsm_inv_bank_rec.custrecord_rsm_subs_address}</td>
+              </tr>
+          </table>
+         </#if>
+        </macro>
+        <macro id="sideTable">
+          <#if record.subsidiary!='CHI'>
+           <#assign countryList = '
+                          Amsterdam <br />
+      Athens<br />
+      Atlanta<br />
+      Bangalore<br />
+      Barcelona<br />
+      Bejing<br />
+      Berlin<br />
+      Bogota<br />
+      Bratislava<br />
+      Brussels<br />
+      Budapest<br />
+      Buenos Aires<br />
+      Calgary<br />
+      Chicago<br />
+      Copenhagen<br />
+      Dallas<br />
+      Dubai<br />
+      Dusseldorf<br />
+      Frankfurt<br />
+      Geneva<br />
+      Hamburg<br />
+      Helsinki<br />
+      Hong Kong<br />
+      Houston<br />
+      Istanbul<br />
+      Jakarta<br />
+      Johannesburg<br />
+      Kuala Lumpur<br />
+      Lisbon<br />
+      London<br />
+      Los Angeles<br />
+      Luxembourg<br />
+      Lyon<br />
+      Madrid<br />
+      Malmo<br />
+      Melbourne<br />
+      Mexico<br />
+      Miami<br />
+      Milan<br />
+      Montreal<br />
+      Moscow<br />
+      Mumbai<br />
+      Munich<br />
+      New Delhi<br />
+      New York<br />
+      Oslo<br />
+      Palo Alto<br />
+      Paris<br />
+      Prague<br />
+      Rio de Janeiro<br />
+      Rome<br />
+      San Francisco<br />
+      Santiago<br />
+      Sao Paulo<br />
+      Seoul<br />
+      Shanghai<br />
+      Singapore<br />
+      Stockholm<br />
+      Stuttgart<br />
+      Sydney<br />
+      Tel Aviv<br />
+      Tokyo<br />
+      Toronto<br />
+      Vienna<br />
+      Warsaw<br />
+      Washington DC<br />
+      Zurich
+                          ' />
+            <#else>
+              <#assign countryList=''>
+            </#if>
+          
+      	<table width="13%" align="right">
+          <tr>
+            <td font-size="8px" padding-top="200px" margin-left="10px">
+              ${countryList}
+            </td>
+          </tr>
+          </table>
+      </macro>
+    </macrolist>
+    <style type="text/css">* {
+		<#if .locale == "zh_CN"  || record.custbody_ez_invoicelanguage_inv?contains('CHI') || subsidiary.country='China'>
+			font-family: Cyberbit, heiseimin, hygothic;
+		<#elseif .locale == "zh_TW">
+			font-family: Cyberbit, heiseimin, hygothic;
+		<#elseif .locale == "ja_JP" || record.custbody_ez_invoicelanguage_inv = 'JPN'>
+			font-family: NotoSans, NotoSansCJKjp, heiseimin, hygothic, sans-serif;
+		<#elseif .locale == "ko_KR">
+			font-family: NotoSans, NotoSansCJKkr, sans-serif;
+		<#elseif .locale == "th_TH">
+			font-family: NotoSans, NotoSansThai, sans-serif;
+		<#else>
+			font-family: C2;
+		</#if>
+		}
+		table {
+			old: 9pt;
+            font-size: 10pt;
+			table-layout: fixed;
+		}
+        th {
+            font-weight: bold;
+            old: 8pt;
+            font-size: 10pt;
+            vertical-align: middle;
+            padding: 5px 6px 3px;
+            background-color: #e3e3e3;
+            color: #333333;
+        }
+        td {
+            padding: 4px 6px;
+        }
+		td p { align:left }
+        b {
+            font-weight: bold;
+            color: #333333;
+        }
+      table.bankDetails td {
+        	padding: 0px;
+      	}
+        table.header td {
+            padding: 0px;
+            font-size: 10pt;
+        }
+        table.footer td {
+            padding: 0px;
+            old: 8pt
+            font-size: 10pt;
+        }
+        table.itemtable th {
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+        table.body td {
+            padding-top: 2px;
+        }
+        table.total {
+            page-break-inside: avoid;
+        }
+        tr.totalrow {
+            background-color: #e3e3e3;
+            line-height: 200%;
+        }
+        td.totalboxtop {
+            old: 12pt;
+            font-size: 10pt;
+            background-color: #e3e3e3;
+        }
+        td.addressheader {
+            old: 8pt;
+            font-size: 10pt;
+            padding-top: 6px;
+            padding-bottom: 2px;
+        }
+        td.address {
+            padding-top: 0px;
+        }
+        td.totalboxmid {
+            font-size: 28pt;
+            padding-top: 20px;
+            background-color: #e3e3e3;
+        }
+        td.totalboxbot {
+            background-color: #e3e3e3;
+            font-weight: bold;
+        }
+        span.title {
+            font-size: 14pt;
+            font-weight: bold;
+        }
+        span.number {
+            font-size: 14pt;
+        }
+        span.itemname {
+            font-weight: bold;
+            line-height: 150%;
+        }
+        hr {
+            width: 100%;
+            color: #d3d3d3;
+            background-color: #d3d3d3;
+            height: 1px;
+        }
+</style>
+</head>
+<body header="nlheader" header-height="10%" footer="nlfooter" footer-height="40pt" padding="0.5in 1.1in 0.5in 0.5in" size="Letter"  >
+
+<#if record.custbody_ez_invoicelanguage_inv = 'JPN'>
+    <#assign locale = nstranslation.Locale.ja_JP />
+<#elseif record.custbody_ez_invoicelanguage_inv = 'GER'>
+    <#assign locale = nstranslation.Locale.de_DE />
+<#elseif record.custbody_ez_invoicelanguage_inv = 'SPN'>
+    <#assign locale = nstranslation.Locale.es_ES />
+<#elseif record.custbody_ez_invoicelanguage_inv = 'FRN'>
+    <#assign locale = nstranslation.Locale.fr_FR />
+<#elseif record.custbody_ez_invoicelanguage_inv = 'ITN'>
+    <#assign locale = nstranslation.Locale.it_IT />
+<#elseif record.custbody_ez_invoicelanguage_inv = 'RUS'>
+    <#assign locale = nstranslation.Locale.ru_RU />
+<#elseif record.custbody_ez_invoicelanguage_inv = 'CZC'>
+    <#assign locale = nstranslation.Locale.zh_CN />
+  <#elseif record.custbody_ez_invoicelanguage_inv = 'RUS'>
+    <#assign locale = nstranslation.Locale.ru_RU />
+  <#elseif record.custbody_ez_invoicelanguage_inv = 'DUT'>
+    <#assign locale = nstranslation.Locale.nl_NL />
+  <#elseif record.custbody_ez_invoicelanguage_inv = 'POR'>
+    <#assign locale = nstranslation.Locale.pt_PT />
+  <#elseif record.custbody_ez_invoicelanguage_inv = 'ARA'>
+    <#assign locale = nstranslation.Locale.ar />
+  <#elseif record.custbody_ez_invoicelanguage_inv = 'INZ'>
+    <#assign locale = nstranslation.Locale.id_ID />
+  <#else>
+    <#assign locale = nstranslation.Locale.en_US />
+  </#if>
+
+    <#if record.subsidiary == 'USA'>
+        <#assign dateFormat = "MMMM dd yyyy"/>
+    <#else>
+        <#assign dateFormat = "dd MMMM yyyy"/>
+    </#if>
+  
+  <!--CREATE MONTH TRANSLATIONS-->
+    <#assign JAN = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "JAN", "locale": locale}) />
+    <#assign FEB = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "FEB", "locale": locale}) />
+    <#assign MAR = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "MAR", "locale": locale}) />
+    <#assign APR = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "APR", "locale": locale}) />
+    <#assign MAY = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "MAY", "locale": locale}) />
+    <#assign JUN = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "JUN", "locale": locale}) />
+    <#assign JUL = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "JUL", "locale": locale}) />
+    <#assign AUG = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "AUG", "locale": locale}) />
+    <#assign SEP = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "SEP", "locale": locale}) />
+    <#assign OCT = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OCT", "locale": locale}) />
+    <#assign NOV = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "NOV", "locale": locale}) />
+    <#assign DEC = nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DEC", "locale": locale}) />
+    
+    <!--SET NUMBER FORMAT-->
+        <#if record.custbody_ez_invoice_no_fo_invoice?has_content>
+            <#if record.custbody_ez_invoice_no_fo_invoice[1]=' ' && record.custbody_ez_invoice_no_fo_invoice[9]=','>
+                <#assign separator= ' ' />
+                <#assign decimal= ',' />
+            <#elseif record.custbody_ez_invoice_no_fo_invoice[1]=' ' && record.custbody_ez_invoice_no_fo_invoice[9]='.'>
+                <#assign separator= ' ' />
+                <#assign decimal= '.' />
+            <#elseif record.custbody_ez_invoice_no_fo_invoice[1]=',' && record.custbody_ez_invoice_no_fo_invoice[9]='.'>
+                <#assign separator= ',' />
+                <#assign decimal= '.' />
+            <#elseif record.custbody_ez_invoice_no_fo_invoice[1]='.' && record.custbody_ez_invoice_no_fo_invoice[9]=','>
+                <#assign separator= '.' />
+                <#assign decimal= ',' />
+            <#elseif record.custbody_ez_invoice_no_fo_invoice[1]!=',' && record.custbody_ez_invoice_no_fo_invoice[1]!='.' && record.custbody_ez_invoice_no_fo_invoice[1]!=' ' && record.custbody_ez_invoice_no_fo_invoice[9]=','>
+                <#assign separator= '\'' />
+                <#assign decimal= ',' />
+            <#elseif record.custbody_ez_invoice_no_fo_invoice[1]!=',' && record.custbody_ez_invoice_no_fo_invoice[1]!='.' && record.custbody_ez_invoice_no_fo_invoice[1]!=' ' && record.custbody_ez_invoice_no_fo_invoice[9]='.'>
+                <#assign separator= '\'' />
+                <#assign decimal= '.' />
+            <#else>
+                <#assign separator= ',' />
+                <#assign decimal= '.' />
+            </#if>
+        <#else>
+            <#assign separator= ',' />
+            <#assign decimal= '.' />
+        </#if>
+  <!--BEGIN COVER PAGE-->
+<#if record.custbody_rsm_add_cl_invoice = true >
+    <table class="header" style="width: 100%;">
+              <tr>
+                <td><span class="title"></span></td>
+                <td align="right"></td>
+              </tr>
+              <tr>
+                <td ><span text-decoration="underline"><br /><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "PRIVATE", "locale": locale})}</b></span><br /><br />
+                <#if record.billcountry = 'JP'>
+                  <#if !(record.custbody_ez_corcity_invoice?contains(record.custbody_ez_corcount_invoice))>${record.custbody_ez_corcount_invoice} <br /></#if>
+                  <#if record.custbody_ez_corzip_invoice?has_content> ${record.custbody_ez_corzip_invoice} <br /> </#if>
+                  <#if record.custbody_ez_corcity_invoice?has_content> ${record.custbody_ez_corcity_invoice},</#if> <#if record.custbody_ez_corstate_invoice?has_content> ${record.custbody_ez_corstate_invoice}<br /> </#if>
+                  <#if record.custbody_ez_coradd1_invoice?has_content> ${record.custbody_ez_coradd1_invoice} <br /></#if>
+                  <#if record.custbody_ez_coradd2_invoice?has_content>${record.custbody_ez_coradd2_invoice} <br /></#if>
+                  <#if record.custbody_ez_coradd3_invoice?has_content>${record.custbody_ez_coradd3_invoice} <br /></#if>
+                  <#if record.custbody_ez_corcomp_assmnt_invoice?has_content>${record.custbody_ez_corcomp_assmnt_invoice} <br /></#if>
+                  <#if record.custbody_ez_corposit_invoice?has_content>${record.custbody_ez_corposit_invoice} <br /> </#if>
+                  <#if record.custbody_ez_coraddee_assmnt_invoice?has_content>${record.custbody_ez_coraddee_assmnt_invoice} <br /></#if>
+                <#else>
+                  <#if record.custbody_ez_coraddee_assmnt_invoice?has_content>${record.custbody_ez_coraddee_assmnt_invoice} <br /></#if>
+                  <#if record.custbody_ez_corposit_invoice?has_content>${record.custbody_ez_corposit_invoice} <br /></#if>
+                  <#if record.custbody_ez_corcomp_assmnt_invoice?has_content>${record.custbody_ez_corcomp_assmnt_invoice} <br /></#if>
+                  <#if record.custbody_ez_coradd1_invoice?has_content>${record.custbody_ez_coradd1_invoice} <br /></#if>
+                  <#if record.custbody_ez_coradd2_invoice?has_content>${record.custbody_ez_coradd2_invoice} <br /></#if>
+                  <#if record.custbody_ez_coradd3_invoice?has_content>${record.custbody_ez_coradd3_invoice} <br /></#if>
+                  <#if record.custbody_ez_corzip_invoice?has_content>${record.custbody_ez_corzip_invoice}</#if> <#if record.custbody_ez_corcity_invoice?has_content> ${record.custbody_ez_corcity_invoice}, </#if><#if record.custbody_ez_corstate_invoice?has_content>${record.custbody_ez_corstate_invoice}  <br /></#if>
+                  <#if !(record.custbody_ez_corcity_invoice?contains(record.custbody_ez_corcount_invoice))><#if record.custbody_ez_corcount_invoice?has_content>${record.custbody_ez_corcount_invoice}<br /></#if></#if>
+                </#if>
+                </td>
+				<td align="right"></td>
+				</tr>
+              <tr>
+                <td><br />${record.trandate?string[dateFormat]?replace('January',JAN)?replace('February',FEB)?replace('March',MAR)?replace('April',APR)?replace('May',MAY)?replace('June',JUN)?replace('July',JUL)?replace('August',AUG)?replace('September',SEP)?replace('October',OCT)?replace('November',NOV)?replace('December',DEC)}</td>
+                <td align="right"><br /></td>
+              </tr>
+              <tr>
+                <td><#if record.job?has_content>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OUR_REF", "locale": locale})}: ${record.job}</#if></td>
+                <td align="right"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td align="right"></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td align="right"></td>
+              </tr>
+          </table>
+  
+  <p margin-top="20px" font-size="10pt">
+    <b><br /><br /><#if record.custbody_rsm_covlet_header_invoice?has_content>${record.custbody_rsm_covlet_header_invoice?replace('{addressee}',record.custbody_ez_billtoaddressee_inv)?replace('{monthyear}',record.trandate?string['MMMM yyyy'])}</#if></b>
+    <br /><br />
+    <#if record.custbody_rsm_covlet_paragr_invoice?has_content>${record.custbody_rsm_covlet_paragr_invoice?replace('{addressee}',record.custbody_ez_coraddee_assmnt_invoice)?replace('{monthyear}',record.trandate?string['MMMM yyyy'])?replace('{amount}',record.total)}
+      </#if> </p>
+  
+  <table class="header" margin-top="65pt">
+    <tr>
+      <td></td>
+    </tr>
+    <tr>
+      <td>${record.custbody_ez_billcons_inv}</td>
+    </tr>
+    <tr>
+      <td><br /><br /><br />${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "ENC", "locale": locale})} ${record.tranid}</td>
+    </tr>
+  </table>
+  <#if record.type = 'invoice'>
+  <table width="50%" font-size="10pt" margin-top="50px" class="bankDetails">
+    <tr><td colspan="2">
+      <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_rec_show_new = true>
+        <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_rec_new_det?has_content>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_rec_new_det}<br /></#if>
+      </#if></td></tr>
+    <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_name?has_content>
+    <tr><td colspan="2">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "BANK_TRANSFERS", "locale": locale})}:</td></tr>
+    <tr>
+      <td width="33%">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "BANK_DETAILS", "locale": locale})}:</td>
+      <td>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_name}<br />
+        <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_address?has_content>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_address}<br /></#if>
+        <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_ref?has_content>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_ref}<br /></#if>
+        <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_country?has_content>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_country}</#if></td>
+    </tr>
+    </#if>
+    <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_account?has_content>
+    <tr>
+      <td>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "ACCOUNT_NO", "locale": locale})}:</td>
+      <td>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_account}</td>
+    </tr>
+    </#if>
+    <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_swift?has_content>
+    <tr>
+      <td>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "SWIFT", "locale": locale})}:</td>
+      <td>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_swift}</td>
+    </tr>
+    </#if>
+    <#if record.subsidiary='CHN'>
+    <tr>
+      <td>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "BENEFICIARY", "locale": locale})}:</td>
+      <td>${record.subsidiary}</td>
+    </tr>
+    </#if>
+    </table></#if>
+  <pbr />
+  </#if>
+  <!-- START MAIN PAGE -->
+ <!--<p>Number Format:    ${record.job.custentity_ez_invoice_no_format}  </p>-->
+  <#if ((subsidiary.country = record.billaddress?keep_after_last('<br />') && record.custbody_rsm_showbase_cur_dom = true) || (subsidiary.country != record.billaddress?keep_after_last('<br />') && record.custbody_rsm_showbase_cur_intern = true))>
+    <#assign showCurrency = 1 />
+  <#else>
+    <#assign showCurrency = 0 />
+  </#if>
+  <table class="header" style="width: 100%;">
+              <tr>
+                <td><span class="title">
+                  <#if record.subsidiary ='UAE'>
+                    ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "TAX_CREDIT_NOTE", "locale": locale})}
+                  <#else>
+                    ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CREDIT_NOTE", "locale": locale})}
+                  </#if>
+                  </span></td>
+                <td align="right"></td>
+              </tr>
+
+    <!-- Commneting following TR to match with invoice heardre Demade #405 --> <!-- changed by Nimisha Agrawal to Fix "???" this issue raised by Alene for Japan subsidiary-->
+         <!--     <tr>
+                <td ><span text-decoration="underline"><br />${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "PRIVATE", "locale": locale})}</span><br /><br />
+                <#if record.billcountry = 'JP'>
+                  <#if !(record.billcity?contains(record.billaddress?keep_after_last('<br />'))) && subsidiary.country!=record.billaddress?keep_after_last('<br />')>${record.billaddress?keep_after_last('<br />')} <br /></#if>
+                  <#if record.billzip?has_content>${record.billzip}<br /></#if>
+                  <#if record.billcity?has_content>${record.billcity}</#if> <#if record.billstate?has_content>${record.billstate}</#if><#if record.billcity?has_content || record.billstate?has_content><br /></#if>
+                  <#if record.billaddr1?has_content>${record.billaddr1}<br /></#if>
+                  <#if record.billaddr2?has_content>${record.billaddr2}<br /></#if>
+                  <#if record.billaddressee?has_content>${record.billaddressee?replace("(DM)","")} <br /></#if>
+                  <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+                  <#if record.custbody_ez_billtoaddressee_inv?has_content>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+                <#else>
+                  <#if record.custbody_ez_company_name = true>
+                    <#if record.billaddressee?has_content>${record.billaddressee?replace("(DM)","")}<br /></#if>
+                    <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+                    <#if record.custbody_ez_billtoaddressee_inv?has_content>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+                  <#else>
+                    <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+                    <#if record.custbody_ez_billtoaddressee_inv?has_content>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+                    <#if record.billaddressee?has_content>${record.billaddressee?replace("(DM)","")}<br /></#if>
+                  </#if>
+                  <#if record.billaddr1?has_content>${record.billaddr1}<br /></#if>
+                  <#if record.billaddr2?has_content>${record.billaddr2}<br /></#if>
+				  <#if record.billaddr3?has_content>${record.billaddr3}<br /></#if>
+                  <#if record.billcountry != 'US' && record.subsidiary != 'AUS'>
+                  <#if record.billzip?has_content>${record.billzip}</#if> <#if record.billcity?has_content> ${record.billcity}<#if record.billstate?has_content && !record.billcity?ends_with(',')>,</#if></#if> <#if record.billstate?has_content> ${record.billstate}</#if><#if record.billzip?has_content || record.billcity?has_content || record.billstate?has_content><br /></#if>
+                  <#else>
+                  <#if record.billcity?has_content>${record.billcity}<#if record.billstate?has_content && !record.billcity?ends_with(',')>,</#if></#if> <#if record.billstate?has_content> ${record.billstate}</#if><#if record.billzip?has_content> ${record.billzip}</#if> <#if record.billzip?has_content || record.billcity?has_content || record.billstate?has_content><br /></#if>
+                  </#if>
+                  <#if (!(record.billcity?contains(record.billaddress?keep_after_last('<br />'))) && subsidiary.country!=record.billaddress?keep_after_last('<br />')) || record.billcountry == 'US'>
+                    ${record.billaddress?keep_after_last('<br />')} <br />
+                  </#if>
+                </#if>
+                </td>
+				<td align="right"></td>
+                  </tr> -->
+
+       <!-- Adding follwoing TR from Invoice PDF layout Demard 405 -->
+
+<tr>
+<td ><span text-decoration="underline"><br />${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "PRIVATE", "locale": locale})}</span><br /><br />
+  <#if record.billcountry = 'JP' && locale = nstranslation.Locale.ja_JP>
+    <#if record.billzip?has_content>${record.billzip}<br /></#if>
+    <#if record.billaddr1?has_content>${record.billaddr1}<br /></#if>
+    <#if record.billaddr2?has_content>${record.billaddr2}<br /></#if>
+    <#if record.billaddr3?has_content>${record.billaddr3}<br /></#if>
+    <#if record.billaddressee?has_content>${record.billaddressee?replace("(DM)","")}<br /></#if>
+    <#if record.custbody_ez_billtoaddressee_inv?has_content>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+    <#if record.custbody_ez_billtoattention_invoice?has_content && record.custbody_ez_billtoaddressee_inv != record.custbody_ez_billtoattention_invoice>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+  <#elseif record.billcountry = 'US'>
+    <#if record.custbody_ez_company_name = true>
+      ${record.billaddressee?replace("(DM)","")}<br />
+      <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+      <#if record.custbody_ez_billtoaddressee_inv?has_content && record.custbody_ez_billtoaddressee_inv != record.custbody_ez_billtoattention_invoice>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+      ${record.billaddress?keep_after('<br />')}
+    <#else>
+      <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+      <#if record.custbody_ez_billtoaddressee_inv?has_content && record.custbody_ez_billtoaddressee_inv != record.custbody_ez_billtoattention_invoice>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+      ${record.billaddress}
+    </#if>
+  <#else>
+    <#if record.custbody_ez_company_name = true>
+      <#if record.billaddressee?has_content>${record.billaddressee?replace("(DM)","")}<br /></#if>
+      <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+      <#if record.custbody_ez_billtoaddressee_inv?has_content && record.custbody_ez_billtoaddressee_inv != record.custbody_ez_billtoattention_invoice>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+    <#else>
+      <#if record.custbody_ez_billtoattention_invoice?has_content>${record.custbody_ez_billtoattention_invoice} <br /></#if>
+      <#if record.custbody_ez_billtoaddressee_inv?has_content && record.custbody_ez_billtoaddressee_inv != record.custbody_ez_billtoattention_invoice>${record.custbody_ez_billtoaddressee_inv} <br /></#if>
+      <#if record.billaddressee?has_content>${record.billaddressee?replace("(DM)","")}<br /></#if>
+    </#if>
+<#if record.billaddr1?has_content>${record.billaddr1}<br /></#if>
+<#if record.billaddr2?has_content>${record.billaddr2}<br /></#if>
+<#if record.billaddr3?has_content>${record.billaddr3}<br /></#if>
+<#if record.billcountry != 'US' && record.subsidiary != 'AUS' && record.billcountry != 'SG' && record.billcountry != 'GB' && record.billcountry != 'JP' && record.billcountry != 'CA'>
+<#if record.billzip?has_content>${record.billzip}</#if> <#if record.billcity?has_content> ${record.billcity}</#if> <#if record.billstate?has_content && record.subsidiary != 'GER' && record.billstate != '???'> ${record.billstate}</#if><#if record.billzip?has_content || record.billcity?has_content || record.billstate?has_content><br /></#if>
+<#else>
+<#if record.billcity?has_content>${record.billcity}</#if> <#if record.billstate?has_content && record.billstate != '???'>${record.billstate}</#if><#if record.billzip?has_content> ${record.billzip}</#if> <#if record.billzip?has_content || record.billcity?has_content || record.billstate?has_content><br /></#if>
+        </#if>
+<#if (!(record.billcity?contains(record.billaddress?keep_after_last('<br />'))) && subsidiary.country!=record.billaddress?keep_after_last('<br />')) || record.subsidiary = 'UAE'>${record.billaddress?keep_after_last('<br />')} <br /></#if>
+        </#if>
+        </td>
+
+        </tr>             
+              <tr>
+                <td>
+                  <br /><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CREDIT_NUMBER", "locale": locale})}:</b> ${record.tranid}
+                  <#if record.custbody_ez_original_invoice_ref?has_content><br /><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "ORIG_INV_REF", "locale": locale})}:</b> <#if locale = nstranslation.Locale.it_IT>${record.custbody_ez_original_invoice_ref?keep_after("Invoice #")}<#else>${record.custbody_ez_original_invoice_ref}</#if></#if>
+                </td>
+                <td align="right"><br />${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CREDIT_DATE", "locale": locale})}: ${record.trandate?string[dateFormat]?replace('January',JAN)?replace('February',FEB)?replace('March',MAR)?replace('April',APR)?replace('May',MAY)?replace('June',JUN)?replace('July',JUL)?replace('August',AUG)?replace('September',SEP)?replace('October',OCT)?replace('November',NOV)?replace('December',DEC)}</td>
+              </tr>
+    		<#if subsidiary.custrecord_rsm_show_contract_from = true>
+              <tr>
+                <td><#if record.job?has_content><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OUR_REF", "locale": locale})}:</b> ${record.job}</#if></td>
+                <td align="right"><#if record.custbody_ez_contractsigned_invoice?has_content>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CONTRACT_FROM", "locale": locale})}: ${record.custbody_ez_contractsigned_invoice?string[dateFormat]?replace('January',JAN)?replace('February',FEB)?replace('March',MAR)?replace('April',APR)?replace('May',MAY)?replace('June',JUN)?replace('July',JUL)?replace('August',AUG)?replace('September',SEP)?replace('October',OCT)?replace('November',NOV)?replace('December',DEC)}</#if></td>
+              </tr>
+            </#if>
+              <tr>
+                <td><#if record.otherrefnum?has_content><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "PO_NUM", "locale": locale})}:</b> ${record.otherrefnum}</#if></td>
+                <td align="right"><#if record.duedate?has_content>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DUE", "locale": locale})} ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DATE", "locale": locale})}: ${record.duedate?string["dateFormat"]?replace('January',JAN)?replace('February',FEB)?replace('March',MAR)?replace('April',APR)?replace('May',MAY)?replace('June',JUN)?replace('July',JUL)?replace('August',AUG)?replace('September',SEP)?replace('October',OCT)?replace('November',NOV)?replace('December',DEC)}</#if></td>
+              </tr>
+              <tr>
+                <td><#if record.custbody_ez_clientref_inv?has_content><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CLIENT_REF", "locale": locale})}.:</b> ${record.custbody_ez_clientref_inv}</#if></td>
+                <td align="right"></td>
+              </tr>
+    		  <tr>
+    		    <td><#if record.custbody_ez_icp_custom?has_content><b>Assignment:</b> ${record.custbody_ez_icp_custom.companyname}</#if></td>
+                <td></td>
+    		  </tr>
+          </table>
+
+<p font-size="10pt">
+  <#if record.custbody_ez_invnarrative_inv?has_content>${record.custbody_ez_invnarrative_inv}
+    <br /></#if>
+  <#if record.custbody_ez_instalment_inv?has_content  && record.custbody_rsm_no_instalment!=true>
+    ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "INSTALLMENT", "locale": locale})} ${record.custbody_ez_instalment_inv}</#if>
+  </p>
+
+<#assign proFeeLabel = 'Fixed Expenses' />
+<#assign fixFeeLabel = 'Fixed Fees' />
+<#assign varExpLabel = 'Variable Expenses' />
+<#assign nonExpLabel = 'No Fee Type' />
+<#assign pfDescList = [] />
+<#assign ffDescList = [] />
+<#assign proFee = []/>
+<#assign fixFee = []/>
+<#assign varExp = []/>
+<#assign nonExp = []/>
+<#assign taxType = []/>
+<#assign proFeeTotal = 0/>
+<#assign fixFeeTotal = 0/>
+<#assign varExpTotal = 0/>
+<#assign nonExpTotal = 0/>
+<#assign taxTotal = 0/>
+<#assign monthList = []/>
+<#assign qcTax = 0 />
+<#assign sweOCTax = 0 />
+<#assign fxrate = record.exchangerate />
+<#if record.subsidiary = 'UAE'|| record.subsidiary = "ITA" && record.custbody_rsm_pdf_fxrate?string?has_content>
+  <#assign fxrate = record.custbody_rsm_pdf_fxrate />
+</#if>
+
+<!-- Capture category months and set QC Tax Code -->
+    <#list record.item as item>
+      <#if !monthList?seq_contains(item.custcol_rsm_invoice_plan_month?keep_after('/')) && item.custcol_rsm_invoice_plan_month?has_content>
+        <#assign monthList = monthList + [item.custcol_rsm_invoice_plan_month?keep_after('/')] />
+      </#if>
+      <#if item.taxcode?contains('QC')>
+        <#assign qcTax = 1 />
+      </#if>
+      <#if item.taxcode?contains('OS-SWE')>
+        <#assign sweOCTax = 1 />
+      </#if>
+    </#list>
+    <#if monthList?size = 0><#assign monthList = [''] /></#if>
+
+<!-- Item Table HEADER START-->
+  <table style="width: 100%; margin-top: 10px; ">
+    <tr border-top="1pt solid black">
+      <td width="70%"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DESCRIPTION", "locale": locale})}</b></td>
+      <td align="right"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "AMOUNT", "locale": locale})}</b></td>
+      <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "AMOUNT", "locale": locale})}</b></td></#if>
+    </tr>
+    <tr border-bottom="1pt solid black">
+      <td width="70%"></td>
+      <td align="right"><b>${record.currency}</b></td>
+      <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"><b>${subsidiary.currency}</b></td></#if>
+    </tr>
+<!-- Item Table HEADER END-->
+
+<!--Capture Fee types and months individually -->
+<#assign groupingCategories = [] />
+<#assign groupedLines = [] />
+<#assign groupingTypes = [] />
+
+<#list record.item as item>
+  <#assign groupedLine = {} />
+  <#assign groupedTax = {} />
+  <!-- item grouping -->
+  
+   <#assign description = item.description />
+     <#assign ignoremonths = false />
+      <#if item.custcol_ez_item_description_override?has_content>
+        <#assign description = item.custcol_ez_item_description_override />
+        <#assign ignoremonths = true />
+      </#if>
+	  
+  <#if record.custbody_rsm_show_moye_invoice = true && item.custcol_rsm_invoice_plan_month?keep_after('/')?has_content>
+    <#if !groupingCategories?seq_contains(item.custcol_rsm_feetype_item + '|' + item.custcol_rsm_invoice_plan_month?keep_after('/')+ '|' + description)>
+      <#assign groupingCategories = groupingCategories + [item.custcol_rsm_feetype_item + '|' + item.custcol_rsm_invoice_plan_month?keep_after('/') + '|' + description] />
+      <#assign groupedLine = {"feeType": item.custcol_rsm_feetype_item, "month": item.custcol_rsm_invoice_plan_month?keep_after('/'), "description": description, "order": item.custcol_rsm_feetype_item?replace("Fixed Fee","Fixed C Fee"), "ignoremonths":ignoremonths} />
+      <#assign groupedLines = groupedLines + [groupedLine] />
+    </#if>
+  <#else>
+    <#if !groupingCategories?seq_contains(item.custcol_rsm_feetype_item + '|' + description)>
+      <#assign groupingCategories = groupingCategories + [item.custcol_rsm_feetype_item + '|' + description] />
+      <#assign groupedLine = {"feeType": item.custcol_rsm_feetype_item, "month": "0", "description": description, "order": item.custcol_rsm_feetype_item?replace("Fixed Fee","Fixed C Fee"),"ignoremonths":ignoremonths} />
+      <#assign groupedLines = groupedLines + [groupedLine] />
+    </#if>
+  </#if>
+  <!-- tax grouping -->
+  <#if !taxType?seq_contains(item.taxrate1)>
+      <#assign taxType = taxType + [item.taxrate1] />
+  </#if>
+    <!-- Variable Expense Calculation - supplement -->
+  <#if item.custcol_rsm_feetype_item = 'Variable Expense'>
+      <#assign varExpLabel = item.description />
+      <#assign varExp = varExp + [item] />
+      <#assign varExpTotal = varExpTotal + item.amount />
+    <#elseif item.custcol_rsm_feetype_item = 'None'>
+      <#assign nonExpLabel = item.description />
+      <#assign nonExp = varExp + [item] />
+      <#assign nonExpTotal = varExpTotal + item.amount />
+  </#if>
+</#list>
+
+<#assign foreignTotal = 0>
+  
+<#assign isICC = false>
+<#if (record.custbody_rsm_temp_paired_ic_transactio)?has_content>
+  <#assign isICC = true>
+<#else>
+  <#assign groupedLines = groupedLines?sort_by("order") />
+</#if>
+  
+<#list groupedLines as itemline> <!-- go thru grouped lines sorted by Fixed Fee, Fixed Expense, Variable Expense -->
+  <#assign groupedTotal = 0>
+  <#list record.item as item> <!-- go thru item lines and calculate amounts -->
+    
+    <!-- months / years grouping -->
+	<#assign description = item.description />
+  <#if item.custcol_ez_item_description_override?has_content>
+    <#assign description = item.custcol_ez_item_description_override />
+  </#if>
+  
+    <#if ((itemline.feeType == item.custcol_rsm_feetype_item) && (itemline.month != "0") && (itemline.month == item.custcol_rsm_invoice_plan_month?keep_after('/')) && (itemline.description = description))>
+      <#assign groupedTotal = groupedTotal + item.amount>
+    <!-- months / years not used -->
+    <#elseif ((itemline.feeType == item.custcol_rsm_feetype_item) && (itemline.month == "0") && (itemline.description = description))>
+      <#assign groupedTotal = groupedTotal + item.amount>
+    </#if>
+  </#list>
+  <#assign foreignTotal = foreignTotal + ((groupedTotal*fxrate)?string("0.00;;roundingMode=halfUp"))?number>
+  <!-- fill table based on groupings and calculated amounts START-->
+  <tr>
+    <td width="70%">
+      ${itemline.description?replace('Fixed Expense',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "FCE", "locale": locale}))?replace('Fixed Consulting Fee',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "FCF", "locale": locale}))?replace('Variable Expense',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "VE", "locale": locale}))}
+      
+      <#if itemline.month != "0" && itemline.ignoremonths = false>
+        ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "MONTH_OF", "locale": locale})} ${('1/'+itemline.month)?date?string['MMMM yyyy']?replace('January',JAN)?replace('February',FEB)?replace('March',MAR)?replace('April',APR)?replace('May',MAY)?replace('June',JUN)?replace('July',JUL)?replace('August',AUG)?replace('September',SEP)?replace('October',OCT)?replace('November',NOV)?replace('December',DEC)}
+      </#if>
+    </td>
+    <td align="right">${groupedTotal?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+    <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR">
+      <td align="right">${(groupedTotal*fxrate)?string("0.00;;roundingMode=halfUp")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+    </#if>
+  </tr>
+  <!-- fill table based on groupings and calculated amounts END-->
+</#list>
+
+  <!-- SUBTOTAL START - removed when 0 not for ZAF and SIN-->
+ <#if ((record.subtotal != record.total) || ((record.subtotal = record.total) && ((record.subsidiary = 'SIN') || (record.subsidiary = 'ZAF'))))>
+  <tr border-top="1pt solid black">
+    <td width="70%"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "TOTAL_TAX", "locale": locale})}</b></td>
+    <td align="right"><b>${record.subtotal?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</b></td>
+    <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"><b>${(foreignTotal)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</b></td></#if>
+  </tr>
+ </#if>
+  <!-- SUBTOTAL END-->
+  
+  <!-- TAXES START-->
+    <#if record.tax2total?has_content><!-- CAN TAXES-->
+      <#assign taxTotal = record.taxtotal+record.tax2total />
+      <#if record.taxtotal != 0 >
+        <tr>
+          <td width="70%">GST/HST ${record.item[0].taxrate1} ${record.custbody_rsm_can_gst_reg_no} </td>
+           <td align="right">${record.taxtotal?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+           <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right">${(record.taxtotal*fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td></#if>
+        </tr>
+      </#if>
+      <#if record.tax2total != 0 >
+        <tr>
+          <td width="70%"><#if qcTax=1>QST<#else>PST</#if> ${record.item[0].taxrate2} ${record.custbody_rsm_can_pst_reg_no} </td>
+            <td align="right">${record.tax2total?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+            <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right">${(record.tax2total*fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td></#if>
+            </tr>
+      </#if>
+    <#else><!-- NON-CAN TAXES-->
+      <#list taxType as tax>
+        <#assign taxTypeTotal = 0 />
+      <#assign underTaxAmount = 0 />
+      <#assign noneTaxAmount = 0 />
+        <#list record.item as item>
+          <#if item.taxrate1 = tax && item.tax1amt?has_content>
+            <#assign taxTypeTotal = taxTypeTotal +  item.tax1amt?string("##0.00")?replace(',','')?number />
+          </#if>
+          <#if item.taxrate1?string = "0%">
+            <#assign noneTaxAmount = noneTaxAmount +  item.amount?string("##0.00")?replace(',','')?number />
+          <#else>
+            <#assign underTaxAmount = underTaxAmount +  item.amount?string("##0.00")?replace(',','')?number />
+          </#if>
+        </#list>
+        <#assign taxTotal = taxTotal + taxTypeTotal />
+        <!-- 0% version of TAXES - allowed for SIN-->
+        <#if (record.subsidiary = 'SIN') && (tax?string != "0%") && (noneTaxAmount != 0)>
+            <tr>
+              <td width="70%">Amount Subject to GST ${tax}</td>
+              <td align="right">${underTaxAmount?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+              <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR">
+                <td align="right">${(underTaxAmount*fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}
+                </td>
+              </#if> 
+            </tr>
+        </#if>
+        <!-- 0% version of TAXES - allowed for ZAF-->
+        <#if ((record.subsidiary = 'ZAF') || (record.subsidiary = 'SIN') || (taxTypeTotal > 0)) && (record.subsidiary != 'IDN')>
+          <tr>
+           <!-- <td width="70%"><#if record.custbody_rsm_inv_tax_ref='VAT'>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "VAT", "locale": locale})}<#else>${record.custbody_rsm_inv_tax_ref}</#if> ${tax} <#if (!(record.currency=subsidiary.currency) && showCurrency=1 && (record.subsidiary = "DEN" || record.subsidiary = "SWE" || record.subsidiary = "NOR"))>(${subsidiary.currency} ${(taxTypeTotal*fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)})</#if></td>-->
+ <td width="70%"><#if record.custbody_rsm_inv_tax_ref='VAT'>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "VAT", "locale": locale})}<#else>${record.custbody_rsm_inv_tax_ref}</#if> ${tax} <#if record.subsidiary = "SWE" >(${subsidiary.currency} ${(taxTypeTotal*record.custbody_rsm_pdf_fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}) </#if><#if (!(record.currency=subsidiary.currency) && showCurrency=1 && (record.subsidiary = "DEN" || record.subsidiary = "SWE" || record.subsidiary = "NOR"))>(${subsidiary.currency} ${(taxTypeTotal*fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)})</#if></td>
+            
+            <td align="right">${taxTypeTotal?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+            <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR">
+              <td align="right">${(taxTypeTotal*fxrate)?string("0.00;;roundingMode=halfUp")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}
+              </td>
+            </#if>
+          </tr>
+        </#if>
+        <!-- 0% version of TAXES - allowed for SIN-->
+        <#if (record.subsidiary = 'SIN') && (tax?string = "0%") && (noneTaxAmount != 0) && (record.total != record.subtotal)>
+            <tr>
+              <td width="70%">Amount Not Subject to GST</td>
+              <td align="right">${noneTaxAmount?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+              <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR">
+                <td align="right">${(noneTaxAmount*fxrate)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}
+                </td>
+              </#if> 
+            </tr>
+        </#if>
+      </#list>
+    </#if>
+<!-- TAXES END-->
+<!-- TOTAL START-->
+<#if ((record.subsidiary = 'IDN'))>
+<tr>
+  <td width="60%"><b>Tax Base</b></td>
+  <td align="right">${(record.subtotal * 11 / 12)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+</tr>
+<#if (taxTypeTotal > 0)>
+<tr>
+  <td width="60%"><b>VAT</b></td>
+  <td align="right">${(record.subtotal * 11 / 12 * 0.12)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</td>
+</tr>
+</#if>
+</#if> 
+  <tr border-bottom="1pt solid black">
+    <td width="70%"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "TOTAL", "locale": locale})}</b></td>
+    <td align="right"><b>${(record.subtotal+taxTotal)?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</b></td>
+    <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"><b>${(foreignTotal+(taxTotal*fxrate))?string("#,##0.00")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</b></td></#if>
+  </tr>
+  <tr>
+    <td width="70%"><#if !(record.currency=subsidiary.currency)  && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "EXCHANGE_RATE", "locale": locale})}: ${(fxrate)?string("#,##0.00000000")?replace(".","DECIMAL")?replace(",",separator)?replace("DECIMAL",decimal)}</#if></td>
+    <td align="right"></td>
+    <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"></td></#if>
+  </tr>
+  <tr>
+    <td width="70%"><#if record.custbody_rsm_show_reverse_charge_inv=true>${record.custbody_ez_rev_charge_invoice?replace('Reverse charge procedure (Article 44, Council Directive 2006/112/EC)
+',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "REV_CHARGE", "locale": locale}))}</#if></td>
+    <td align="right"></td>
+    <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"></td></#if>
+  </tr>
+  <tr>
+    <td width="70%"><#if record.subsidiary = "SWE" && sweOCTax = 1 >${record.custbody_ez_export_of_services}</#if></td>
+    <td align="right"></td>
+    <#if !(record.currency=subsidiary.currency) && showCurrency=1 && record.subsidiary != "DEN" && record.subsidiary != "SWE" && record.subsidiary != "NOR"><td align="right"></td></#if>
+  </tr>
+  </table>
+  <table width="100%" margin-top="25pt" font-size="10pt">
+              <tr>
+              <td> ${record.custbody_ez_invoice_footer_invoice}</td>
+              <td align="right"></td>
+              </tr>
+              <tr>
+              <td>
+                <table margin-top='15px' border="1px solid black" class="bankDetails" font-size="10pt">
+                  <tr>
+                    <td><#if record.type = 'invoice'><#if record.terms?has_content><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "PAYMENT", "locale": locale})} ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DUE", "locale": locale})}:</b> ${record.terms?replace('Due on receipt',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DOR", "locale": locale}))} <br /></#if><#if record.location.custrecord_rsm_ar_email_office?has_content>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "SEND_REMIT", "locale": locale})} ${record.location.custrecord_rsm_ar_email_office}</#if></td>
+                  </tr>
+                  <tr>
+                  <td><br />
+                    <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_rec_show_new = true>
+                      <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_rec_new_det?has_content>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_rec_new_det}<br /><br /></#if>
+                      </#if>
+                    <table width="100%"  font-size="10pt">
+                      <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_name?has_content>
+                        <tr><td colspan="2">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "BANK_TRANSFERS", "locale": locale})}:</td></tr>
+                        <tr>
+                          <td width="33%">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "BANK_DETAILS", "locale": locale})}:</td>
+                          <td>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_name}<br />
+                          <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_address?has_content> ${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_address}<br /></#if>
+                            <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_ref?has_content>  ${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_ref}<br /></#if>
+                            <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_country?has_content>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_country}</#if></td>
+                        </tr>
+                        </#if>
+                      <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_account?has_content>
+                        <tr>
+                          <td>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "ACCOUNT_NO", "locale": locale})}:</td>
+                          <td>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_account}</td>
+                        </tr>
+                        </#if>
+                      <#if record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_swift?has_content>
+                        <tr>
+                          <td>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "SWIFT", "locale": locale})}:</td>
+                          <td>${record.custbody_rsm_inv_bank_rec.custrecord_rsm_bank_swift}</td>
+                        </tr>
+                        </#if>
+                      <#if record.subsidiary='CHN'>
+                        <tr>
+                          <td>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "BENEFICIARY", "locale": locale})}:</td>
+                          <td>${record.subsidiary}</td>
+                        </tr>
+                        </#if>
+                    </table></#if></td>
+                  </tr>
+                </table>
+                </td>
+              <td align="right"><br /><br /><br /><br />
+                <#if record.vatregnum?has_content && record.custbody_rsm_display_yourvat != true >
+                ${record.custbody_rsm_tax_reference_inv?replace('Your VAT Code',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "YOUR_VAT", "locale": locale}))}: ${record.vatregnum}
+                <#--  ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "YOUR_VAT", "locale": locale})}: ${record.vatregnum}  -->
+                <br />
+                </#if>
+                <#if subsidiary.federalidnumber?has_content && record.custbody_rsm_display_ourvat != true>
+                ${record.custbody_rsm_ez_tax_reg_number?replace('Our VAT Code',nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OUR_VAT", "locale": locale}))}: ${subsidiary.federalidnumber}
+                <#--  ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OUR_VAT", "locale": locale})}: ${subsidiary.federalidnumber}  -->
+                <br />
+                </#if>
+                <#if record.custbody_nexil_fiscal_code?has_content>
+                ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "YOUR_FISCAL", "locale": locale})}: ${record.custbody_nexil_fiscal_code} 
+                <br />
+                </#if>
+                </td>
+              </tr>
+          </table>
+  <!-- START INVOICE BREAKDOWN -->
+    <#if record.custbody_rsm_varsup_invoice = true>
+    <pbr /> 
+    <table width="100%">
+      <tr>
+        <td ><b>${record.entity}</b></td>
+        <td align="right"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "INVOICE", "locale": locale})} ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "INVOICE_BREAKDOWN", "locale": locale})}</b></td>
+      </tr>
+      <tr>
+        <td >
+          <table width="100%">
+            <tr>
+              <td width="25%">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "INVOICE", "locale": locale})} ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "NUMBER_ABRV", "locale": locale})}</td>
+              <td>:&nbsp;&nbsp;&nbsp;${record.tranid}</td>
+            </tr>
+            <tr>
+              <td width="25%">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "INVOICE", "locale": locale})} ${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DATE", "locale": locale})}</td>
+              <td>:&nbsp;&nbsp;&nbsp;${record.trandate?string[dateFormat]?replace('January',JAN)?replace('February',FEB)?replace('March',MAR)?replace('April',APR)?replace('May',MAY)?replace('June',JUN)?replace('July',JUL)?replace('August',AUG)?replace('September',SEP)?replace('October',OCT)?replace('November',NOV)?replace('December',DEC)}</td>
+            </tr>
+            <tr>
+              <td width="25%">${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OUR_REF", "locale": locale})}</td>
+              <td>:&nbsp;&nbsp;&nbsp;${record.tranid}</td>
+            </tr>
+          </table>
+        </td>
+        <td align="right"></td>
+      </tr>
+    </table>
+
+<!-- Create Detail Groupings -->
+<#assign expTypeList = ['Airfare','Ground Transportation','Hotel','Other'] />
+<#assign expTypeLabelList = [nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "AIRFARE", "locale": locale}),nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "GROUND_TRANSPORTATION", "locale": locale}),nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "HOTEL", "locale": locale}),nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "OTHER", "locale": locale})] />
+<#assign expLabelList = [nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CONSULTANT_INTNL", "locale": locale}), nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CONSULTANT_LOCAL", "locale": locale}), nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CANDIDATE_INTNL", "locale": locale}), nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "CANDIDATE_LOCAL", "locale": locale})] />
+<#assign intnlConsultant = [] />
+<#assign intnlConsultantTotal = 0 />
+<#assign intnlConsultantNames = [] />
+<#assign localConsultant = [] />
+<#assign localConsultantTotal = 0 />
+<#assign localConsultantNames = [] />
+<#assign intnlCandidate = [] />
+<#assign intnlCandidateTotal = 0 />
+<#assign intnlCandidateNames = [] />
+<#assign localCandidate = [] />
+<#assign localCandidateTotal = 0 />
+<#assign localCandidateNames = [] />
+<#list varExp as item>
+  <#if item.custcol_rsm_candidate_expense_invoice = false && item.custcol_rsm_type_of_travel_invoice = 'International'>
+    <#assign intnlConsultant = intnlConsultant + [item] />
+    <#assign intnlConsultantTotal = intnlConsultantTotal + item.amount />
+    <#if !intnlConsultantNames?seq_contains(item.custcol_rsm_consultant_exp_invoice)> <#assign intnlConsultantNames = intnlConsultantNames + [item.custcol_rsm_consultant_exp_invoice] /></#if>
+  <#elseif item.custcol_rsm_candidate_expense_invoice = false && item.custcol_rsm_type_of_travel_invoice = 'Domestic'>
+    <#assign localConsultant = localConsultant + [item] />
+	<#assign localConsultantTotal = localConsultantTotal + item.amount />
+    <#if !localConsultantNames?seq_contains(item.custcol_rsm_consultant_exp_invoice)> <#assign localConsultantNames = localConsultantNames + [item.custcol_rsm_consultant_exp_invoice] /></#if>
+  <#elseif item.custcol_rsm_candidate_expense_invoice = true && item.custcol_rsm_type_of_travel_invoice = 'International'>
+    <#assign intnlCandidate = intnlCandidate + [item] />
+    <#assign intnlCandidateTotal = intnlCandidateTotal + item.amount />
+    <#if !intnlCandidateNames?seq_contains(item.custcol_rsm_expense_office_inv)> <#assign intnlCandidateNames = intnlCandidateNames + [item.custcol_rsm_expense_office_inv] /></#if>
+  <#elseif item.custcol_rsm_candidate_expense_invoice = true && item.custcol_rsm_type_of_travel_invoice = 'Domestic'>
+    <#assign localCandidate = localCandidate + [item] />
+    <#assign localCandidateTotal = localCandidateTotal + item.amount />
+    <#if !localCandidateNames?seq_contains(item.custcol_rsm_expense_office_inv)> <#assign localCandidateNames = localCandidateNames + [item.custcol_rsm_expense_office_inv] /></#if>
+    </#if>
+  </#list>
+<#assign varExpSublist = [intnlConsultant, localConsultant, intnlCandidate, localCandidate] />
+<#assign varExpSubtotals = [intnlConsultantTotal, localConsultantTotal, intnlCandidateTotal, localCandidateTotal] />
+
+<!-- Item Table -->
+<table style="width: 100%; margin-top: 10px; ">
+  <tr border-top="1pt solid black">
+    <td width="70%"></td>
+  	<td align="right"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "AMOUNT", "locale": locale})}</b></td>
+  </tr>
+  <tr line-height="50%">
+    <td width="70%"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "DESCRIPTION", "locale": locale})}</b></td>
+  	<td align="right"></td>
+  </tr>
+  <tr border-bottom="1pt solid black">
+    <td width="70%"></td>
+  	<td align="right"><b>${record.currency}</b></td>
+  </tr>
+  <#list varExpSublist as expSublist>
+        <#if expSublist?size gt 0>
+        <tr>
+          <td width="70%" margin-top="15px">&nbsp;&nbsp;<b>${expLabelList[expSublist?index]}</b></td>
+          <td align="right" margin-top="15px"><b>${varExpSubtotals[expSublist?index]}</b></td>
+        </tr>
+        </#if>
+    <#if expSublist?index = 0>
+      <#assign currentExpListNames = intnlConsultantNames>
+    <#elseif expSublist?index = 1>
+      <#assign currentExpListNames = localConsultantNames>
+    <#elseif expSublist?index = 2>
+      <#assign currentExpListNames = intnlCandidateNames>
+    <#else>
+      <#assign currentExpListNames = localCandidateNames>
+    </#if>
+    <#list currentExpListNames as name>
+        <tr margin-top="10px">
+          <td width="70%">&nbsp;&nbsp;&nbsp;&nbsp;<span text-decoration="underline">${name}<#if !(expSublist?index=0) && !(expSublist?index=1)>&nbsp;A/P Expenses</#if></span></td>
+          <td align="right"></td>
+        </tr>
+        <#list expTypeList as type>
+          	  <#assign typeTotal = 0 />
+              <#list expSublist as item>
+                <#if (item.custcol_rsm_expense_office_inv = name || item.custcol_rsm_consultant_exp_invoice = name) && item.custcol_rsm_expense_type_invoice = type>
+                  <#assign typeTotal = typeTotal + item.amount />
+                </#if>
+              </#list>
+              <#if typeTotal != 0 >
+                <tr line-height="65%">
+                  <td width="70%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<#if record.custbody_rsm_ves_detail_invoice = 'Detail-F'><span text-decoration="underline">${expTypeLabelList[type?index]}</span><#else>${expTypeLabelList[type?index]}</#if> </td>
+                  <td align="right"><#if record.custbody_rsm_ves_detail_invoice = 'Mid-F'>${typeTotal?string("#,##0.00")}</#if></td>
+                </tr>
+                <#if record.custbody_rsm_ves_detail_invoice = 'Detail-F'>
+                <#list expSublist as item>
+                <#if (item.custcol_rsm_expense_office_inv = name || item.custcol_rsm_consultant_exp_invoice = name) && item.custcol_rsm_expense_type_invoice = type>
+                          <tr line-height="75%">
+                            <td width="70%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${item.custcol_rsm_charge_memo}</td>
+                            <td align="right">${item.amount?string("#,##0.00")}</td>
+                          </tr>
+                </#if>
+              </#list>
+                  </#if>
+                </#if>
+          </#list>
+        </#list>
+      </#list>
+  <tr border-bottom="1pt solid black" border-top="1pt solid black" margin-top="20px">
+    <td width="70%"><b>${nstranslation.get({"collection":"custcollection_rsm_adv_pdf", "key": "GRAND_TOTAL", "locale": locale})}</b></td>
+  	<td align="right"><b>${(varExpTotal)?string("#,##0.00")}</b></td>
+  </tr>
+  </table>
+      </#if>
+</body>
+</pdf>
